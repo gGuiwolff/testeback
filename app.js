@@ -4,7 +4,7 @@ const cors = require("cors");
 const server = require("http").Server(app);
 const io = require("socket.io")(server, {
     allowRequest: (req, callback) =>
-        callback(null, req.headers.referer.startsWith("https://front-nova.vercel.app")),
+        callback(null, req.headers.referer.startsWith("https://front-nova-px6j4h1xz-gguiwolff.vercel.app")),
 });
 const compression = require("compression");
 const path = require("path");
