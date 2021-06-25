@@ -98,7 +98,7 @@ app.get("*", requireLoggedInUser, (req, res) =>
 );
 
 var port = process.env.PORT || 3000;
-server.listen(port, () => console.log("[Rodando servidor]"));
+server.listen(port, () => console.log("[Rodando servidor novo]"));
 
 // Socket:
 let onlineSockets = {};
