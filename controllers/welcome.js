@@ -1,7 +1,7 @@
 const path = require("path");
 
 exports.getWelcome = async (req, res) => {
-    res.sendFile(path.join(__dirname, "public", "index.html"));
+    res.sendFile(path.join(__dirname, "../..", "public", "index.html"));
 };
 
 /*exports.getWelcomes = async (req, res) => {
