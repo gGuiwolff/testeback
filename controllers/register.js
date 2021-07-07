@@ -32,6 +32,7 @@ exports.postRegister = async (req, res) => {
                 success: true,
             });
         } catch (err) {
+            console.log('[ERRO ERRO TOKEN]')
             customPostgressError(err)
                 ? res.status(400).json({
                       success: false,
