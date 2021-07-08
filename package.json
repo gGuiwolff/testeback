@@ -36,6 +36,11 @@
         "uid-safe": "^2.1.4",
         "webpack-dev-server": "^3.11.0"
     },
+    "jest": {
+        "setupFiles": [
+            "./jest.js"
+        ]
+    },
     "keywords": [],
     "author": "Lukas Ortwein",
     "license": "ISC"
