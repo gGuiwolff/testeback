@@ -50,12 +50,12 @@ const logOut = require("./routes/logOut")
 
 //Cookie session + socket cookie
 
-const cookieSessionMiddleware = cookieSession({
+/*const cookieSessionMiddleware = cookieSession({
     secret: process.env.COOKIE_SESSION_SECRET,
     maxAge: 1000 * 60 * 60 * 24 * 90,
-});
+});*/
 
-app.use(cookieSessionMiddleware({
+app.use(cookieSession({
   name: 'session',
   keys: ['key1', 'key2'],
   cookie: { secure: true,
