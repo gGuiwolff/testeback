@@ -61,11 +61,11 @@ io.use(function (socket, next) {
 });
 app.use(csurf());
 
-app.use(function (req, res, next) {
+/*app.use(function (req, res, next) {
     res.cookie("mytoken", req.csrfToken());
     next();
 });
-
+*/
 app.use(express.static(path.join(__dirname, "public")));
 
 
