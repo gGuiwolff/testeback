@@ -50,29 +50,18 @@ const logOut = require("./routes/logOut")
 
 //Cookie session + socket cookie
 
-/*const cookieSessionMiddleware = cookieSession({
+const cookieSessionMiddleware = cookieSession({
     secret: process.env.COOKIE_SESSION_SECRET,
     maxAge: 1000 * 60 * 60 * 24 * 90,
-});*/
+});
 
-app.use(cookieSession({
-  name: 'session',
-  keys: ['key1', 'key2'],
-  cookie: { secure: true,
-            httpOnly: false,
-            domain: 'https://front-nova.vercel.app',
-            path: 'foo/bar',
-            expires: expiryDate
-          }
-  })
-);
 
-/*app.use(cookieSessionMiddleware);
+app.use(cookieSessionMiddleware);
 io.use(function (socket, next) {
     cookieSessionMiddleware(socket.request, socket.request.res, next);
-});*/
+});
 
-app.use(csurf());
+//app.use(csurf());
 
 app.use(function (req, res, next) {
     res.cookie("mytoken", req.csrfToken());
