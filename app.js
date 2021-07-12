@@ -59,8 +59,8 @@ app.use(cookieSessionMiddleware({
   name: 'session',
   keys: ['key1', 'key2'],
   cookie: { secure: true,
-            httpOnly: true,
-            domain: 'example.com',
+            httpOnly: false,
+            domain: 'https://front-nova.vercel.app',
             path: 'foo/bar',
             expires: expiryDate
           }
