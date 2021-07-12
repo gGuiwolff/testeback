@@ -55,17 +55,30 @@ const cookieSessionMiddleware = cookieSession({
     maxAge: 1000 * 60 * 60 * 24 * 90,
 });
 
-app.use(cookieSessionMiddleware);
+app.use(cookieSessionMiddleware({
+  name: 'session',
+  keys: ['key1', 'key2'],
+  cookie: { secure: true,
+            httpOnly: true,
+            domain: 'example.com',
+            path: 'foo/bar',
+            expires: expiryDate
+          }
+  })
+);
+
+/*app.use(cookieSessionMiddleware);
 io.use(function (socket, next) {
     cookieSessionMiddleware(socket.request, socket.request.res, next);
-});
-//app.use(csurf());
+});*/
 
-/*app.use(function (req, res, next) {
+app.use(csurf());
+
+app.use(function (req, res, next) {
     res.cookie("mytoken", req.csrfToken());
     next();
 });
-*/
+
 app.use(express.static(path.join(__dirname, "public")));
 
 
