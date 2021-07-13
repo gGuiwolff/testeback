@@ -82,6 +82,8 @@ app.use(csurf());
 
 
 app.use(function (req, res, next) {
+    var randomNumber=Math.random().toString();
+    randomNumber=randomNumber.substring(2,randomNumber.length);
     res.cookie('mytoken',randomNumber, { maxAge: 900000, httpOnly: true })
     //res.cookie("mytoken", req.csrfToken());
     next();
