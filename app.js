@@ -67,7 +67,6 @@ io.use(function (socket, next) {
 
 app.use(function (req, res, next) {
     console.log('[AQUI O REQ]',req)
-    console.log('[AQUI O RES]',res)
     next();
 });
 
