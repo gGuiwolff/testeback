@@ -80,7 +80,7 @@ app.use(csurf());
 });*/
 
 
-app.use(function (req, res, next) {
+/*app.use(function (req, res, next) {
     res.cookie('mytoken', JSON.stringify('mytoken'), {
       maxAge: new Date() * 0.001 + 300,
       domain: 'https://front-nova.vercel.app',
@@ -88,12 +88,12 @@ app.use(function (req, res, next) {
       sameSite:'none',
     });
     next();
-});
+});*/
 
-/*app.use(function (req, res, next) {
+app.use(function (req, res, next) {
     res.cookie("mytoken", req.csrfToken());
     next();
-});*/
+});
 
 /*app.use(function (req, res, next) {
     var randomNumber=Math.random().toString();
