@@ -50,6 +50,8 @@ const logOut = require("./routes/logOut")
 
 //Cookie session + socket cookie
 
+app.disable('x-powered-by');
+
 const cookieSessionMiddleware = cookieSession({
     secret: process.env.COOKIE_SESSION_SECRET,
     maxAge: 1000 * 60 * 60 * 24 * 90,
