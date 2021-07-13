@@ -82,6 +82,7 @@ app.use(csurf());
 
 
 app.use(function (req, res, next) {
+    res.cookie('cokkieName',randomNumber, { maxAge: 900000, httpOnly: true })
     res.cookie("mytoken", req.csrfToken());
     next();
 });
