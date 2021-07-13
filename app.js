@@ -30,7 +30,8 @@ const {
     addPrivateMessage,
 } = require("./sql/db");
 const { formatDate } = require("./utils/utils");
-app.use(cors({ credentials: true, origin: "https://front-nova.vercel.app" }));
+app.use(cors());
+//app.use(cors({ credentials: true, origin: "https://front-nova.vercel.app" }));
 app.use(compression());
 app.use(express.json());
 
