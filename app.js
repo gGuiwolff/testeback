@@ -82,13 +82,12 @@ app.use(csurf());
 
 
 app.use(function (req, res, next) {
-    res.cookie('mytoken', JSON.stringify(localeObj), {
+    res.cookie('mytoken', JSON.stringify('mytoken'), {
       maxAge: new Date() * 0.001 + 300,
       domain: 'https://veg2.herokuapp.com',
       secure: true,
       sameSite:'none',
     });
-
     next();
 });
 
