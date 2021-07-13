@@ -61,12 +61,18 @@ io.use(function (socket, next) {
     cookieSessionMiddleware(socket.request, socket.request.res, next);
 });
 
-app.use(csurf());
+//app.use(csurf());
 
 app.use(function (req, res, next) {
-    res.cookie("mytoken", req.csrfToken());
+    console.log('[AQUI O REQ]',req)
+    console.log('[AQUI O RES]',res)
     next();
 });
+
+/*app.use(function (req, res, next) {
+    res.cookie("mytoken", req.csrfToken());
+    next();
+});*/
 
 app.use(express.static(path.join(__dirname, "public")));
 
