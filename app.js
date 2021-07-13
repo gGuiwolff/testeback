@@ -2,10 +2,19 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const server = require("http").Server(app);
-const io = require("socket.io")(server, {
+/*const io = require("socket.io")(server, {
     allowRequest: (req, callback) =>
         callback(null, req.headers.referer.startsWith("https://front-nova.vercel.app")),
+});*/
+const io = require("socket.io")(server, {
+    allowRequest: (req, callback) =>
+        callback(null, req.headers.referer.startsWith("http://localhost:3000")),
 });
+
+
+
+
+
 const compression = require("compression");
 const path = require("path");
 const dotenv = require("dotenv");
@@ -63,17 +72,18 @@ io.use(function (socket, next) {
     cookieSessionMiddleware(socket.request, socket.request.res, next);
 });
 
-//app.use(csurf());
+app.use(csurf());
 
-app.use(function (req, res, next) {
+/*app.use(function (req, res, next) {
     console.log('[AQUI O REQ]',req)
     next();
 });
+*/
 
-/*app.use(function (req, res, next) {
+app.use(function (req, res, next) {
     res.cookie("mytoken", req.csrfToken());
     next();
-});*/
+});
 
 app.use(express.static(path.join(__dirname, "public")));
 
