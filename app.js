@@ -22,7 +22,7 @@ const {
     addPrivateMessage,
 } = require("./sql/db");
 const { formatDate } = require("./utils/utils");
-app.use(cookieParser())
+app.use(cookieParser("secret"))
 app.use(cors());
 app.use(compression());
 app.use(express.json());
