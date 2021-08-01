@@ -3,7 +3,7 @@ const { validEmail, validLength } = require("../utils/utils");
 const { compare } = require("../utils/bc");
 
 exports.postLogin = async (req, res) => {
-    console.log('[EXPO LOGIN]')
+    console.log('[EXPO LOGIN]',req)
     const { email, password } = req.body;
     if (
         validEmail(email) &&
