@@ -1,4 +1,5 @@
 const express = require("express");
+const cookieParser = require('cookie-parser');
 const app = express();
 const cors = require("cors");
 const server = require("http").Server(app);
@@ -21,9 +22,11 @@ const {
     addPrivateMessage,
 } = require("./sql/db");
 const { formatDate } = require("./utils/utils");
+app.use(cookieParser())
 app.use(cors());
 app.use(compression());
 app.use(express.json());
+
 
 //Route files
 const register = require("./routes/register");
