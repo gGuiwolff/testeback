@@ -8,6 +8,7 @@ const {
 const { hash } = require("../utils/bc");
 
 exports.postRegister = async (req, res) => {
+    console.log('[REQUISIÇAO REGISTER ==============]',req)
     const { firstName, lastName, email, password } = req.body;
     if (
         validEmail(email) &&
