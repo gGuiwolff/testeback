@@ -59,10 +59,10 @@ app.use(cookieSessionMiddleware);
 io.use(function (socket, next) {
     cookieSessionMiddleware(socket.request, socket.request.res, next);
 });
-app.use(csurf());
+//app.use(csurf());
 
 app.use(function (req, res, next) {
-    res.cookie("mytoken", req.csrfToken());
+    res.cookie("mytoken", req.request_id);
     next();
 });
 
