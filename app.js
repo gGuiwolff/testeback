@@ -62,7 +62,7 @@ io.use(function (socket, next) {
 //app.use(csurf());
 
 app.use(function (req, res, next) {
-    res.cookie("mytoken", req.request_id);
+    res.cookie('mytoken', 'deucerto', { signed: true });
     next();
 });
 
