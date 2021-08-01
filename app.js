@@ -1,20 +1,11 @@
 const express = require("express");
 const app = express();
 const cors = require("cors");
-const server = require("https").Server(app);
-/*const io = require("socket.io")(server, {
-    allowRequest: (req, callback) =>
-        callback(null, req.headers.referer.startsWith("https://front-nova.vercel.app")),
-});*/
+const server = require("http").Server(app);
 const io = require("socket.io")(server, {
     allowRequest: (req, callback) =>
         callback(null, req.headers.referer.startsWith("http://localhost:3000")),
 });
-
-
-
-
-
 const compression = require("compression");
 const path = require("path");
 const dotenv = require("dotenv");
@@ -30,7 +21,7 @@ const {
     addPrivateMessage,
 } = require("./sql/db");
 const { formatDate } = require("./utils/utils");
-app.use(cors({ credentials: true, origin: "https://front-nova.vercel.app" }));
+app.use(cors());
 app.use(compression());
 app.use(express.json());
 
@@ -59,51 +50,21 @@ const logOut = require("./routes/logOut")
 
 //Cookie session + socket cookie
 
-app.disable('x-powered-by');
-
 const cookieSessionMiddleware = cookieSession({
     secret: process.env.COOKIE_SESSION_SECRET,
     maxAge: 1000 * 60 * 60 * 24 * 90,
 });
 
-
 app.use(cookieSessionMiddleware);
 io.use(function (socket, next) {
     cookieSessionMiddleware(socket.request, socket.request.res, next);
 });
-
 app.use(csurf());
-
-/*app.use(function (req, res, next) {
-    console.log('[AQUI O REQ]',req)
-    next();
-});*/
-
-
-/*app.use(function (req, res, next) {
-    res.cookie('mytoken', JSON.stringify('mytoken'), {
-      maxAge: new Date() * 0.001 + 300,
-      domain: 'https://front-nova.vercel.app',
-      secure: true,
-      sameSite:'none',
-    });
-    next();
-});*/
 
 app.use(function (req, res, next) {
     res.cookie("mytoken", req.csrfToken());
     next();
 });
-
-/*app.use(function (req, res, next) {
-    var randomNumber=Math.random().toString();
-    randomNumber=randomNumber.substring(2,randomNumber.length);
-    res.cookie('mytoken',randomNumber, { maxAge: 900000, httpOnly: false })
-    //res.cookie("mytoken", req.csrfToken());
-    next();
-});*/
-
-app.use(express.static(path.join(__dirname, "public")));
 
 
 //Mount routers
@@ -130,12 +91,13 @@ app.use("/teste", () => console.log('[EXPO AQUI]'))
 //app.use("/cloudimages")
 // FECHA TESTE====
 
+
 app.get("*", requireLoggedInUser, (req, res) =>
-    res.sendFile(path.join(__dirname, "public", "index.html"))
+    res.sendFile(path.join(__dirname, "/client/index.html"))
 );
 
 var port = process.env.PORT || 3000;
-server.listen(port, () => console.log("[Rodando servidor novo]"));
+server.listen(port, () => console.log("http://apivegiwe-com.umbler.net"));
 
 // Socket:
 let onlineSockets = {};
